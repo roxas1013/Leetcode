@@ -1,0 +1,12 @@
+class Solution:
+    def preorder(self, root: 'Node') -> List[int]:
+        if not root:
+            return []
+        res = []
+        stack = [root]
+        while stack:
+            u =stack.pop()
+            res.append(u.val)
+            for c in u.children[::-1]:
+                stack.append(c)
+        return res
