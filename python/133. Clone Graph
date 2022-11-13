@@ -1,0 +1,40 @@
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+"""
+
+class Solution(object):
+    def cloneGraph(self, node):
+        """
+        :type node: Node
+        :rtype: Node
+        """
+        visited = set()
+        stack = [node]
+        if node == None:
+            return node
+        new_head = Node(node.val)
+        val_map = {}        
+        val_map[node.val] = new_head
+
+        while stack:
+            cur = stack.pop()
+            if cur.val in visited:
+                continue
+            else:
+                visited.add(cur.val)
+            tem = val_map.get(cur.val)
+           
+            clone_neighbors = []
+            for neighbor in cur.neighbors:
+                
+                node = Node(neighbor.val) if neighbor.val not in val_map else val_map[neighbor.val]
+                val_map[node.val] = node
+                stack.append(neighbor)
+                clone_neighbors.append(node)
+            tem.neighbors.extend(clone_neighbors)
+     
+        return new_head
