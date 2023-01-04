@@ -1,0 +1,10 @@
+class Solution:
+    def minimumRounds(self, tasks: List[int]) -> int:
+        count = Counter(tasks)
+        res = 0
+        for i in count.values():
+            if i <2:
+                return -1
+            else:
+                res += (i+  2) //3
+        return res
