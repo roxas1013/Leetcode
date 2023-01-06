@@ -1,0 +1,10 @@
+class Solution:
+    def confusingNumber(self, n: int) -> bool:
+        x ,y ,xm = n , 0 , {0:0,1:1,6:9,8:8,9:6}
+        while n:
+            n , m = divmod(n,10)
+            if m not in xm:
+                return False
+            N,y = n,+y * 10 +xm[m]
+        return x!=y
+
