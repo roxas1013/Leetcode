@@ -1,0 +1,22 @@
+class Solution:
+    def longestPath(self, parent: List[int], s: str) -> int:
+        def dfs(par):
+            routes = [0]
+            for child in tree[par]:
+                cur = dfs(child)
+                if s[par] != s[child]:
+                    routes.append(cur)
+                    
+            routes = nlargest(2, routes)
+            self.answer = max(self.answer, sum(routes) + 1)
+            return max(routes) + 1
+        
+        tree, self.answer = defaultdict(set), 0
+
+        for child, par in enumerate(parent):
+            if par > -1:
+                tree[par].add(child)
+
+        dfs(0)
+        
+        return self.answer
