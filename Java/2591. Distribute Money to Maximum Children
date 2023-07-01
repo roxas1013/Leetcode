@@ -1,0 +1,13 @@
+class Solution {
+    public int distMoney(int m, int c) {
+        if(m < c) return -1;
+        if(m == c * 8) return c;
+        if(m > c * 8) return c -1 ;
+        int temp = m -c;
+        int ans = temp / 7;
+        int rem = temp % 7;
+        if(c - ans == 1 && rem == 3)
+            ans --;
+        return ans;
+    }
+}
