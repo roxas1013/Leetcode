@@ -1,0 +1,33 @@
+class Solution {
+    public int maxConsecutiveAnswers(String answ, int k) {
+        int lg = answ.length();
+        int left = 0;
+        int right = 0;
+        int cut = 0;
+        int cuf = 0;
+        int ans = 0;
+        if(k > lg) return lg;
+        while(lg > right)
+        {
+            if(answ.charAt(right) == 'T')
+            {
+                cut++;
+            }else{
+                cuf++;
+            }
+            while(cut > k && cuf > k)
+            {
+                if(answ.charAt(left) == 'T')
+                {
+                    cut --;
+                }else
+                    cuf --;
+                    left ++ ;
+                
+            }
+            ans = Math.max(ans, right - left + 1);
+            right ++;
+        }
+        return ans;
+    }
+}
